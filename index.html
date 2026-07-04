@@ -150,6 +150,7 @@
   .section-head{display:grid; grid-template-columns:1fr 1.4fr; gap:40px; margin-bottom:64px; align-items:start;}
   .section-head h2{font-size:clamp(30px,3.6vw,44px); line-height:1.08; margin-top:14px;}
   .section-head .lede{color:var(--ink-soft); font-size:17px; padding-top:8px;}
+  .about-head{grid-template-columns:0.85fr 1.55fr; align-items:center;}
 
   .personas{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
   .persona{background:var(--bg); padding:30px 24px; border-top:3px solid transparent;}
@@ -238,6 +239,7 @@
     .hero-visual{align-items:flex-start; margin-top:40px;}
     .hero-visual p{text-align:left;}
     .section-head{grid-template-columns:1fr;}
+    .about-head img{max-width:180px; margin-bottom:8px;}
     .personas{grid-template-columns:repeat(2,1fr);}
     .stance .wrap, .contact .wrap{grid-template-columns:1fr;}
   }
@@ -347,10 +349,11 @@
 
   <section id="ueber-mich" style="background:var(--bg-panel);">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Über mich</span>
+      <div class="section-head about-head">
+        <img src="simon-portrait.jpg" alt="Simon Mugume" style="width:100%; max-width:280px; border-radius:2px; display:block;">
         <div>
-          <h2>Zwei Fachwelten, ein Blick auf den Menschen.</h2>
+          <span class="eyebrow">Über mich</span>
+          <h2 style="margin-top:14px;">Zwei Fachwelten, ein Blick auf den Menschen.</h2>
           <p class="lede">Ich verbinde klinische Psychologie, meine Psychotherapie-Ausbildung und eine diplomierte Ernährungsberatung — ergänzt durch meine Forschung zum Zusammenhang von Ernährung und Autismus-Spektrum-Störung an der Psychiatrischen Universitätsklinik Zürich.</p>
         </div>
       </div>
@@ -473,6 +476,14 @@
         <details class="faq-item">
           <summary>Was passiert bei einem medizinischen Risiko?</summary>
           <p>Bei starkem Gewichtsverlust, Mangelernährung oder akuter Krise wird an geeignete medizinische oder psychotherapeutische Fachstellen verwiesen.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Beraten Sie auch mein Kind direkt?</summary>
+          <p>Die Beratung richtet sich an Sie als Elternteil. Ihr Kind kann bei den Terminen einbezogen werden, wenn das sinnvoll ist — es findet aber keine eigenständige Behandlung oder Diagnostik des Kindes statt.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ich bin Patient:in der PUK — kann ich trotzdem zu Spectrum &amp; Spoon kommen?</summary>
+          <p>Als Mitarbeiter der PUK berate ich privat keine Personen, die gleichzeitig meine eigenen Patient:innen an der PUK sind oder waren. Das schützt die Trennung zwischen meiner Anstellung und meiner Praxis. Bei einer anderen Zuständigkeit an der PUK ist eine Beratung möglich — im Zweifel kläre ich das offen mit Ihnen im Orientierungsgespräch.</p>
         </details>
       </div>
     </div>
