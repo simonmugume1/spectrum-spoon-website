@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectrum & Spoon — Essen verstehen. Spektrum sehen.</title>
+<meta name="description" content="Spezialisierte Ernährungs- und Alltagsberatung bei Autismus und sensorischem Essen. Kostenloses Orientierungsgespräch, Erstabklärung und Einzelberatung – online oder im Raum Winterthur.">
+<meta property="og:title" content="Spectrum & Spoon — Essen verstehen. Spektrum sehen.">
+<meta property="og:description" content="Spezialisierte Ernährungs- und Alltagsberatung bei Autismus und sensorischem Essen.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://spectrumandspoon.ch/logo-cover.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF7;
+    --bg-panel: #F1F1EC;
+    --ink: #26262B;
+    --ink-soft: #3F4044;
+    --ink-faint: #6C6D72;
+    --teal: #128C86;
+    --teal-deep: #0B5B57;
+    --line: rgba(38,38,43,0.12);
+
+    --sp-red:#EF4B36;
+    --sp-orange:#F7941D;
+    --sp-yellow:#FFC20E;
+    --sp-green:#8DC63F;
+    --sp-teal:#1CA9A0;
+    --sp-blue:#1B75BC;
+    --sp-purple:#7B4FA0;
+
+    --radius: 2px;
+    --max: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow .dashes{display:flex; gap:3px;}
+  .eyebrow .dashes span{width:5px; height:5px; border-radius:50%; display:block;}
+  .eyebrow .dashes span:nth-child(1){background:var(--sp-red);}
+  .eyebrow .dashes span:nth-child(2){background:var(--sp-orange);}
+  .eyebrow .dashes span:nth-child(3){background:var(--sp-teal);}
+
+  h1,h2,h3{
+    font-family:'Instrument Sans', sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,247,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 32px;}
+  .logo{
+    font-family:'Instrument Sans', sans-serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo img{width:32px; height:32px;}
+
+  .navlinks{display:flex; gap:34px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); position:relative; padding-bottom:3px;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0%; height:2px;
+    background:linear-gradient(90deg,var(--sp-red),var(--sp-orange),var(--sp-teal));
+    transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+
+  .nav-cta{
+    font-size:14px; font-weight:500; padding:10px 18px;
+    border:1px solid var(--ink); border-radius:var(--radius);
+    text-decoration:none; white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--bg);}
+
+  .hero{padding:88px 0 100px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:end;}
+  .hero h1{font-size:clamp(40px, 6vw, 76px); line-height:0.98; margin-top:22px;}
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--teal);}
+  .hero-sub{max-width:480px; margin-top:26px; color:var(--ink-soft); font-size:17.5px;}
+  .hero-actions{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink); color:var(--bg); padding:14px 26px; border-radius:var(--radius);
+    text-decoration:none; font-size:15px; font-weight:500; display:inline-block;
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-ghost{
+    padding:14px 22px; border-radius:var(--radius); text-decoration:none;
+    font-size:15px; font-weight:500; color:var(--ink); border-bottom:1px solid var(--ink);
+  }
+
+  .hero-visual{display:flex; flex-direction:column; align-items:flex-end; gap:18px;}
+  .hero-visual p{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);
+    text-align:right; max-width:230px; letter-spacing:0.02em;
+  }
+  .dotfield{width:100%; aspect-ratio:1/1.15; max-width:320px; position:relative;}
+  .dotfield svg{width:100%; height:100%; display:block;}
+
+  .trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0;}
+  .trust .wrap{display:flex; flex-wrap:wrap; gap:10px 40px; justify-content:space-between; align-items:center;}
+  .trust-item{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.04em; color:var(--ink-soft); display:flex; align-items:center; gap:8px;}
+  .trust-item b{color:var(--ink); font-weight:600;}
+
+  section{padding:104px 0;}
+  .section-head{display:grid; grid-template-columns:1fr 1.4fr; gap:40px; margin-bottom:64px; align-items:start;}
+  .section-head h2{font-size:clamp(30px,3.6vw,44px); line-height:1.08; margin-top:14px;}
+  .section-head .lede{color:var(--ink-soft); font-size:17px; padding-top:8px;}
+  .about-head{grid-template-columns:0.85fr 1.55fr; align-items:center;}
+
+  .personas{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .persona{background:var(--bg); padding:30px 24px; border-top:3px solid transparent;}
+  .persona:nth-child(1){border-top-color:var(--sp-red);}
+  .persona:nth-child(2){border-top-color:var(--sp-orange);}
+  .persona:nth-child(3){border-top-color:var(--sp-teal);}
+  .persona:nth-child(4){border-top-color:var(--sp-blue);}
+  .persona .tag{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint);}
+  .persona p{margin-top:14px; font-size:15px; color:var(--ink-soft); line-height:1.55;}
+
+  .offer-row{
+    display:grid; grid-template-columns:70px 1.6fr 1fr; gap:24px; align-items:start;
+    padding:32px 0; border-top:1px solid var(--line); transition:background .2s ease;
+  }
+  .offer-row:last-child{border-bottom:1px solid var(--line);}
+  .offer-row:hover{background:var(--bg-panel);}
+  .offer-num{font-family:'IBM Plex Mono', monospace; color:var(--ink-faint); font-size:14px; padding-top:4px;}
+  .offer-title{font-family:'Instrument Sans', sans-serif; font-weight:600; font-size:22px;}
+  .offer-title span{display:block; font-family:'Inter'; font-weight:400; font-size:15px; color:var(--ink-soft); margin-top:8px;}
+  .offer-meta{font-size:14.5px; color:var(--ink-soft); text-align:right;}
+  @media (max-width:760px){
+    .offer-row{grid-template-columns:40px 1fr;}
+    .offer-meta{grid-column:2; text-align:left;}
+  }
+
+  .price-note{
+    margin-top:36px; padding:28px 30px; border-radius:var(--radius);
+    background:var(--bg-panel); display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    border-left:3px solid var(--teal);
+  }
+  .price-note p{margin:0; font-size:15px; color:var(--ink-soft);}
+  .price-note strong{color:var(--ink);}
+
+  .stance{background:var(--ink); color:var(--bg); padding:110px 0;}
+  .stance .wrap{display:grid; grid-template-columns:1.3fr 1fr; gap:60px;}
+  .stance blockquote{margin:0; font-family:'Instrument Sans', sans-serif; font-weight:500; font-size:clamp(28px,4vw,42px); line-height:1.18;}
+  .stance blockquote em{color:var(--sp-orange); font-style:italic;}
+  .stance-values{display:flex; flex-direction:column; gap:22px; padding-top:8px;}
+  .stance-values div{border-top:1px solid rgba(250,250,247,0.2); padding-top:16px;}
+  .stance-values h4{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sp-yellow); margin:0 0 8px; font-weight:500;}
+  .stance-values p{margin:0; font-size:15px; color:rgba(250,250,247,0.78); line-height:1.55;}
+
+  .faq-item{border-top:1px solid var(--line); padding:26px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-family:'Instrument Sans', sans-serif; font-weight:600; font-size:18px; gap:20px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{
+    content:"+"; font-family:'IBM Plex Mono', monospace; font-size:20px; color:var(--teal);
+    flex-shrink:0; transition:transform .2s ease;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{margin:16px 0 0; max-width:640px; color:var(--ink-soft); font-size:15.5px;}
+
+  .contact{background:var(--bg-panel);}
+  .contact .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .contact h2{font-size:clamp(32px,4.4vw,52px); line-height:1.05;}
+  .contact .note{margin-top:22px; font-size:14.5px; color:var(--ink-soft); max-width:400px; border-left:2px solid var(--teal); padding-left:16px;}
+  form{display:flex; flex-direction:column; gap:18px;}
+  label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; display:block;}
+  input, textarea, select{
+    width:100%; background:transparent; border:none; border-bottom:1px solid var(--ink-faint);
+    padding:10px 2px; font-family:'Inter'; font-size:15.5px; color:var(--ink); outline:none;
+  }
+  input:focus, textarea:focus, select:focus{border-bottom:1px solid var(--teal);}
+  textarea{resize:vertical; min-height:70px;}
+  .field{display:flex; flex-direction:column;}
+  .submit-btn{
+    align-self:flex-start; margin-top:8px; background:var(--ink); color:var(--bg); border:none;
+    padding:14px 30px; border-radius:var(--radius); font-size:15px; font-weight:500; cursor:pointer;
+    font-family:'Inter'; transition:background .2s ease;
+  }
+  .submit-btn:hover{background:var(--teal-deep);}
+
+  footer{padding:44px 0; border-top:1px solid var(--line);}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-faint);}
+  footer a{text-decoration:none; color:var(--ink-faint);}
+  footer a:hover{color:var(--ink);}
+  .footer-links{display:flex; gap:24px; flex-wrap:wrap;}
+
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{align-items:flex-start; margin-top:40px;}
+    .hero-visual p{text-align:left;}
+    .section-head{grid-template-columns:1fr;}
+    .about-head img{max-width:180px; margin-bottom:8px;}
+    .personas{grid-template-columns:repeat(2,1fr);}
+    .stance .wrap, .contact .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">
+      Spectrum &amp; Spoon
+    </a>
+    <ul class="navlinks">
+      <li><a href="#angebot">Angebot</a></li>
+      <li><a href="#fuer-wen">Für wen</a></li>
+      <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#haltung">Haltung</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Orientierungsgespräch</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dashes"><span></span><span></span><span></span></span> Ernährungs- &amp; Alltagsberatung · Autismus &amp; sensorisches Essen</span>
+        <h1>Essen verstehen.<br>Spektrum <em>sehen.</em></h1>
+        <p class="hero-sub">Essen kann kompliziert sein — besonders wenn Sensorik, Routinen, Erschöpfung oder schlechte Erfahrungen eine Rolle spielen. Ich begleite Erwachsene, Angehörige und Fachpersonen dabei, Essschwierigkeiten verständlicher zu machen. Ohne Druck. Ohne Beschämung.</p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn-primary">Kostenloses Orientierungsgespräch</a>
+          <a href="#angebot" class="btn-ghost">Angebot ansehen</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="dotfield" aria-hidden="true">
+          <svg viewBox="0 0 320 368">
+            <circle cx="40" cy="30" r="7" fill="var(--sp-red)"/>
+            <circle cx="90" cy="18" r="4" fill="var(--sp-yellow)"/>
+            <circle cx="150" cy="45" r="10" fill="var(--sp-orange)"/>
+            <circle cx="220" cy="20" r="5" fill="var(--sp-blue)"/>
+            <circle cx="270" cy="60" r="6" fill="var(--sp-green)"/>
+            <circle cx="30" cy="100" r="5" fill="var(--sp-purple)"/>
+            <circle cx="120" cy="110" r="8" fill="var(--sp-blue)"/>
+            <circle cx="200" cy="120" r="4" fill="var(--sp-red)"/>
+            <circle cx="260" cy="140" r="9" fill="var(--sp-yellow)"/>
+            <circle cx="70" cy="160" r="6" fill="var(--sp-teal)"/>
+            <circle cx="160" cy="180" r="12" fill="var(--sp-orange)"/>
+            <circle cx="30" cy="210" r="4" fill="var(--sp-green)"/>
+            <circle cx="230" cy="200" r="6" fill="var(--sp-purple)"/>
+            <circle cx="280" cy="230" r="5" fill="var(--sp-teal)"/>
+            <circle cx="110" cy="240" r="7" fill="var(--sp-red)"/>
+            <circle cx="180" cy="260" r="5" fill="var(--sp-blue)"/>
+            <circle cx="50" cy="280" r="9" fill="var(--sp-yellow)"/>
+            <circle cx="240" cy="290" r="4" fill="var(--sp-green)"/>
+            <circle cx="140" cy="310" r="6" fill="var(--sp-teal)"/>
+            <circle cx="90" cy="330" r="4" fill="var(--sp-purple)"/>
+            <circle cx="200" cy="340" r="8" fill="var(--sp-orange)"/>
+          </svg>
+        </div>
+        <p>Jeder Punkt anders — Grösse, Farbe, Abstand. Kein Muster, das sich wiederholt. So wie das Spektrum selbst.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <span class="trust-item"><b>EMR</b> registriert</span>
+      <span class="trust-item"><b>GLN / ZSR</b> vorhanden</span>
+      <span class="trust-item">Dipl. Ernährungsberater EMR · <b>SWS Winterthur 2025</b></span>
+      <span class="trust-item">MSc Psychologie · <b>PUK Zürich</b></span>
+      <span class="trust-item">Online &amp; <b>Raum Winterthur / Seuzach</b></span>
+    </div>
+  </div>
+
+  <section id="fuer-wen">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Für wen</span>
+        <div>
+          <h2>Kein Standardangebot für alle — eine Nische für genau dieses Thema.</h2>
+          <p class="lede">Eine klare Zielgruppe schützt vor Fehlanfragen und macht deutlich: Dieses Angebot ist für Autismus und sensorische Essschwierigkeiten gedacht — nicht für allgemeine Ernährungsoptimierung.</p>
+        </div>
+      </div>
+      <div class="personas">
+        <div class="persona">
+          <span class="tag">Erwachsene im Spektrum</span>
+          <p>Im Autismus-Spektrum, mit Diagnose oder Verdacht — Essalltag, Sensorik und Erschöpfung besser verstehen.</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Selektives Essen</span>
+          <p>Starre Routinen, Ekel, eingeschränkte Auswahl — ohne dass gleich eine Diagnose vorliegen muss.</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Eltern &amp; Familien</span>
+          <p>Beratung für Sie als Elternteil bei Essschwierigkeiten Ihres Kindes — Ihr Kind kann bei den Terminen einbezogen werden. Wir schauen die Essthematik gemeinsam an, die Beratung selbst richtet sich an Sie.</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Fachpersonen</span>
+          <p>Psychiatrie, Psychotherapie, Ergotherapie — eine spezialisierte Anlaufstelle für Ess- und Sensorikfragen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ueber-mich" style="background:var(--bg-panel);">
+    <div class="wrap">
+      <div class="section-head about-head">
+        <img src="simon-portrait.jpg" alt="Simon Mugume" style="width:100%; max-width:280px; border-radius:2px; display:block;">
+        <div>
+          <span class="eyebrow">Über mich</span>
+          <h2 style="margin-top:14px;">Zwei Fachwelten, ein Blick auf den Menschen.</h2>
+          <p class="lede">Ich verbinde klinische Psychologie, meine Psychotherapie-Ausbildung und eine diplomierte Ernährungsberatung — ergänzt durch meine Forschung zum Zusammenhang von Ernährung und Autismus-Spektrum-Störung an der Psychiatrischen Universitätsklinik Zürich.</p>
+        </div>
+      </div>
+      <div class="personas">
+        <div class="persona">
+          <span class="tag">Aktuell</span>
+          <p>Ich arbeite als Psychologe im Ambulatorium &amp; der Tagesklinik der Psychiatrischen Universitätsklinik Zürich (PUK), seit 2025.</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Psychotherapie</span>
+          <p>Ich bilde mich im MAS Prozessbasierte Psychotherapie an der Universität Luzern weiter (Abschluss 2028).</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Ernährung</span>
+          <p>Ich bin dipl. Ernährungsberater EMR (SWS Winterthur, 2025) — meine Diplomarbeit widmete sich der Ernährungstherapie.</p>
+        </div>
+        <div class="persona">
+          <span class="tag">Forschung</span>
+          <p>Als wissenschaftlicher Mitarbeiter an der PUK forsche ich zum Zusammenhang von Ernährung und Autismus-Spektrum-Störung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="angebot">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Angebot</span>
+        <div>
+          <h2>Der Weg von der ersten Anfrage bis zur Umsetzung.</h2>
+          <p class="lede">Fünf Schritte, die aufeinander aufbauen — von der ersten unverbindlichen Klärung bis zur konkreten Alltagsveränderung.</p>
+        </div>
+      </div>
+
+      <div class="offers">
+        <div class="offer-row">
+          <span class="offer-num">01</span>
+          <div class="offer-title">Orientierungsgespräch
+            <span>Klärt, ob das Angebot zu Ihrem Anliegen passt — unverbindlich und ohne Vorbereitung.</span>
+          </div>
+          <div class="offer-meta">20 Min · Online / Telefon</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-num">02</span>
+          <div class="offer-title">Erstabklärung
+            <span>Essalltag, Sensorik, Routinen, Belastungen und Ziele — die fachliche Grundlage für die Beratung.</span>
+          </div>
+          <div class="offer-meta">60–75 Min · Online / Hausbesuch</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-num">03</span>
+          <div class="offer-title">Einzelberatung
+            <span>Konkrete Schritte, Routinen und Psychoedukation — mit realistischen Anpassungen statt idealisierten Plänen.</span>
+          </div>
+          <div class="offer-meta">50 Min · Online / Hausbesuch</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-num">04</span>
+          <div class="offer-title">Angehörigen- &amp; Elternberatung
+            <span>Verständnis und Kommunikationsstrategien, ohne die betroffene Person zu übergehen.</span>
+          </div>
+          <div class="offer-meta">50 Min · Online / nach Absprache</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-num">05</span>
+          <div class="offer-title">Hausbesuch
+            <span>Essumfeld vor Ort beobachten und anpassen — nur nach klarer Indikation.</span>
+          </div>
+          <div class="offer-meta">75–90 Min + Wegzeit</div>
+        </div>
+      </div>
+
+      <div class="price-note">
+        <p><strong>Honorare besprechen wir persönlich</strong> im kostenlosen Orientierungsgespräch — passend zu Ihrem Anliegen und Format.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="haltung" class="stance">
+    <div class="wrap">
+      <blockquote>Essschwierigkeiten werden <em>erklärt</em>, nicht beschämt.</blockquote>
+      <div class="stance-values">
+        <div>
+          <h4>Neurodiversität</h4>
+          <p>Autismus wird nicht als Fehler betrachtet, der korrigiert werden muss.</p>
+        </div>
+        <div>
+          <h4>Alltagstauglichkeit</h4>
+          <p>Empfehlungen funktionieren in echten Haushalten, mit echten Energielimits.</p>
+        </div>
+        <div>
+          <h4>Klare Grenzen</h4>
+          <p>Keine Diagnose, keine Psychotherapie, keine Notfallversorgung — dafür ehrliche Weiterweisung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Häufige Fragen</span>
+        <div>
+          <h2>Bevor Sie fragen müssen.</h2>
+        </div>
+      </div>
+      <div class="faqs">
+        <details class="faq-item" open>
+          <summary>Ist Spectrum &amp; Spoon Therapie?</summary>
+          <p>Nein. Spectrum &amp; Spoon ist spezialisierte Ernährungs- und Alltagsberatung. Psychotherapie, Diagnostik und Krisenintervention werden nicht angeboten.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Brauche ich eine Autismus-Diagnose?</summary>
+          <p>Nein. Eine Diagnose kann hilfreich sein, ist aber nicht zwingend. Wichtig ist, ob Ihr Anliegen zu Autismus, Sensorik, Essalltag oder Angehörigenberatung passt.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was kostet eine Beratung?</summary>
+          <p>Das besprechen wir persönlich im kostenlosen Orientierungsgespräch, abgestimmt auf Ihr Anliegen und Format. So bleibt es transparent und passend statt pauschal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was passiert bei einem medizinischen Risiko?</summary>
+          <p>Bei starkem Gewichtsverlust, Mangelernährung oder akuter Krise wird an geeignete medizinische oder psychotherapeutische Fachstellen verwiesen.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Beraten Sie auch mein Kind direkt?</summary>
+          <p>Die Beratung richtet sich an Sie als Elternteil. Ihr Kind kann bei den Terminen einbezogen werden, wenn das sinnvoll ist — es findet aber keine eigenständige Behandlung oder Diagnostik des Kindes statt.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ich bin Patient:in der PUK — kann ich trotzdem zu Spectrum &amp; Spoon kommen?</summary>
+          <p>Als Mitarbeiter der PUK berate ich privat keine Personen, die gleichzeitig meine eigenen Patient:innen an der PUK sind oder waren. Das schützt die Trennung zwischen meiner Anstellung und meiner Praxis. Bei einer anderen Zuständigkeit an der PUK ist eine Beratung möglich — im Zweifel kläre ich das offen mit Ihnen im Orientierungsgespräch.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="contact">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Kontakt</span>
+        <h2 style="margin-top:16px;">Schreiben Sie mir ein paar Stichworte.</h2>
+        <p class="note">Bitte senden Sie über dieses Formular keine sensiblen Gesundheitsdaten, Diagnosen oder Berichte. Für den Erstkontakt genügen wenige Worte — Vertrauliches besprechen wir im geeigneten Rahmen.</p>
+      </div>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f900357d-fd00-4760-bd7a-b643b4a3cbec">
+        <input type="hidden" name="subject" value="Neue Anfrage über spectrumandspoon.ch">
+        <input type="hidden" name="redirect" value="https://spectrumandspoon.ch/danke.html">
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="interesse">Ich interessiere mich für</label>
+          <select id="interesse" name="interesse">
+            <option>Orientierungsgespräch</option>
+            <option>Erstabklärung</option>
+            <option>Einzelberatung</option>
+            <option>Angehörigenberatung</option>
+            <option>Anderes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="anliegen">Kurzes Anliegen</label>
+          <textarea id="anliegen" name="anliegen" placeholder="Wenige Stichworte genügen."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Nachricht senden</button>
+      </form>
+      <p style="margin-top:14px; font-size:12.5px; color:var(--ink-faint);">Ihre Anfrage wird über den datensparsamen Formular-Dienst Web3Forms direkt an meine E-Mail-Adresse weitergeleitet und dort nicht dauerhaft gespeichert.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="flex-direction:column; align-items:center; gap:24px; text-align:center;">
+    <img src="logo-wordmark.png" alt="Spectrum & Spoon" style="width:200px; height:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; width:100%; flex-wrap:wrap; gap:16px;">
+      <span>© 2026 Spectrum &amp; Spoon — Simon Mugume</span>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
