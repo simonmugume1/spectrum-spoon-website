@@ -496,18 +496,22 @@
         <h2 style="margin-top:16px;">Schreiben Sie mir ein paar Stichworte.</h2>
         <p class="note">Bitte senden Sie über dieses Formular keine sensiblen Gesundheitsdaten, Diagnosen oder Berichte. Für den Erstkontakt genügen wenige Worte — Vertrauliches besprechen wir im geeigneten Rahmen.</p>
       </div>
-      <form onsubmit="event.preventDefault(); alert('Formular-Vorschau — noch nicht verbunden.');">
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f900357d-fd00-4760-bd7a-b643b4a3cbec">
+        <input type="hidden" name="subject" value="Neue Anfrage über spectrumandspoon.ch">
+        <input type="hidden" name="redirect" value="https://spectrumandspoon.ch/danke.html">
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
         <div class="field">
           <label for="name">Name</label>
-          <input type="text" id="name" required>
+          <input type="text" id="name" name="name" required>
         </div>
         <div class="field">
           <label for="email">E-Mail</label>
-          <input type="email" id="email" required>
+          <input type="email" id="email" name="email" required>
         </div>
         <div class="field">
           <label for="interesse">Ich interessiere mich für</label>
-          <select id="interesse">
+          <select id="interesse" name="interesse">
             <option>Orientierungsgespräch</option>
             <option>Erstabklärung</option>
             <option>Einzelberatung</option>
@@ -517,10 +521,11 @@
         </div>
         <div class="field">
           <label for="anliegen">Kurzes Anliegen</label>
-          <textarea id="anliegen" placeholder="Wenige Stichworte genügen."></textarea>
+          <textarea id="anliegen" name="anliegen" placeholder="Wenige Stichworte genügen."></textarea>
         </div>
         <button type="submit" class="submit-btn">Nachricht senden</button>
       </form>
+      <p style="margin-top:14px; font-size:12.5px; color:var(--ink-faint);">Ihre Anfrage wird über den datensparsamen Formular-Dienst Web3Forms direkt an meine E-Mail-Adresse weitergeleitet und dort nicht dauerhaft gespeichert.</p>
     </div>
   </section>
 

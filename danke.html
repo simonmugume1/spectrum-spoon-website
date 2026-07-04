@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danke — Spectrum & Spoon</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --ink:#26262B; --ink-soft:#3F4044; --teal:#128C86; --teal-deep:#0B5B57; --line:rgba(38,38,43,0.14);
+    --sp-red:#EF4B36; --sp-orange:#F7941D; --sp-teal:#1CA9A0;
+  }
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center;}
+  .box{max-width:480px; text-align:center; padding:0 32px;}
+  .dots{display:flex; justify-content:center; gap:8px; margin-bottom:28px;}
+  .dots span{width:10px; height:10px; border-radius:50%; display:block;}
+  .dots span:nth-child(1){background:var(--sp-red);}
+  .dots span:nth-child(2){background:var(--sp-orange);}
+  .dots span:nth-child(3){background:var(--sp-teal);}
+  h1{font-family:'Instrument Sans',sans-serif; font-size:32px; margin:0 0 14px;}
+  p{color:var(--ink-soft); font-size:16.5px; line-height:1.6; margin:0 0 30px;}
+  a.back{display:inline-block; background:var(--ink); color:var(--bg); padding:13px 26px; border-radius:2px; text-decoration:none; font-size:15px; font-weight:500;}
+  a.back:hover{background:var(--teal-deep);}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <h1>Danke für Ihre Nachricht.</h1>
+    <p>Ihre Anfrage ist angekommen. Ich melde mich in der Regel innerhalb einiger Werktage bei Ihnen zurück.</p>
+    <a href="index.html" class="back">Zurück zur Startseite</a>
+  </div>
+</body>
+</html>
